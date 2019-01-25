@@ -32,16 +32,45 @@ def main():
 		print('')
 		ColorPrint.print_bold("Please give the file name: ")
 		file = input('> ')
-		ColorPrint.print_bold('------------------------------')
-		ColorPrint.print_info('Duplicated lines:')
-		with open(file) as f:
-			seen = set()
-			for line in f:
-				if line in seen:
-					print(line.replace('\\', ''))
-				else:
-					seen.add(line)
-		ColorPrint.print_bold('------------------------------')
+		ColorPrint.print_bold('Do you want to create a new file with the duplicated lines removed after the scan?')
+		remove = input('> ')
+		if remove.lower() == 'yes' or remove.lower() == 'y' or remove.lower() == 'ye':
+			ColorPrint.print_bold('What should be the new file name ?')
+			new_file = input('> ')
+			if ".txt" not in new_file:
+				new_file = new_file + ".txt"
+			else:
+				pass
+			outfile = open(new_file, "w")
+			lines_seen = set()
+			ColorPrint.print_bold('------------------------------')
+			ColorPrint.print_info('Duplicated lines:')
+			with open(file) as f:
+				seen = set()
+				for line in f:
+					if line in seen:
+						print(line.replace('\\', ''))
+					else:
+						seen.add(line)
+			ColorPrint.print_bold('------------------------------')
+			for line in open(file, "r"):
+				if line not in lines_seen:
+					outfile.write(line)
+					lines_seen.add(line)
+			outfile.close()
+			ColorPrint.print_success('File created under the name "' + new_file + '".')
+		else:
+			ColorPrint.print_bold('------------------------------')
+			ColorPrint.print_info('Duplicated lines:')
+			with open(file) as f:
+				seen = set()
+				for line in f:
+					if line in seen:
+						print(line.replace('\\', ''))
+					else:
+						seen.add(line)
+			ColorPrint.print_bold('------------------------------')
+
 	except FileNotFoundError:
 		ColorPrint.print_fail('Could not find duplicated lines. File not found.')
 	except KeyboardInterrupt:
