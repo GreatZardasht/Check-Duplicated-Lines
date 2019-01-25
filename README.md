@@ -1,0 +1,2 @@
+# Check-Duplicated-Lines
+temp
