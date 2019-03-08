@@ -32,6 +32,10 @@ def main():
 		print('')
 		ColorPrint.print_bold("Please give the file name: ")
 		file = input('> ')
+		if ".txt" not in file:
+			file = file + ".txt"
+		else:
+			pass
 		ColorPrint.print_bold('Do you want to create a new file with the duplicated lines removed after the scan?')
 		remove = input('> ')
 		if remove.lower() == 'yes' or remove.lower() == 'y' or remove.lower() == 'ye':
@@ -49,7 +53,7 @@ def main():
 				seen = set()
 				for line in f:
 					if line in seen:
-						print(line.replace('\\', ''))
+						print(line)
 					else:
 						seen.add(line)
 			ColorPrint.print_bold('------------------------------')
@@ -66,7 +70,7 @@ def main():
 				seen = set()
 				for line in f:
 					if line in seen:
-						print(line.replace('\\', ''))
+						print(line)
 					else:
 						seen.add(line)
 			ColorPrint.print_bold('------------------------------')
