@@ -1,3 +1,9 @@
+""""
+Copyright © Krypton 2019 - https://github.com/kkrypt0nn
+Description:
+This is a program which checks for duplicated lines and then gives you options to choose what you want to do with it.
+"""
+
 import sys
 
 class ColorPrint:
